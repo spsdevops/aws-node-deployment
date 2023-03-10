@@ -69,32 +69,6 @@ Resources:
       Properties:
         RestApiId: !Ref Api
         StageName: !Ref StageName
-
-    DomainName:
-      Type: 'AWS::ApiGateway::DomainName'
-      Properties:
-        CertificateArn: "arn:aws:acm:us-east-1:494098342225:certificate/53a12d49-d055-4469-b455-a63665fd5980"
-        DomainName: hello.apis1.test.timelineage.site
-
-    Mapping:
-      Type: 'AWS::ApiGateway::BasePathMapping'
-      Properties:
-        DomainName: !Ref DomainName
-        RestApiId: !Ref Api
-        BasePath: ""
-        Stage: !Ref StageName
-
-    Route53RecordSetGroup:
-      Type: AWS::Route53::RecordSet
-      Properties:
-        Name: hello.apis1.test.timelineage.site
-        Type: A
-        HostedZoneId: Z05524491VQ38G93MIPQD
-        AliasTarget:
-          DNSName: !GetAtt DomainName.DistributionDomainName
-          EvaluateTargetHealth: false
-          HostedZoneId: !GetAtt DomainName.DistributionHostedZoneId
-
     ApiKey: 
       Type: AWS::ApiGateway::ApiKey
       Properties: 
